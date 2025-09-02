@@ -1,0 +1,125 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+  line-height: 1.6;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+/* Tagline + Brand */
+.tagline {
+  font-size: 1.3rem;
+  max-width: 90%;
+  margin: 10px auto;
+}
+
+.brand-name {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #a855f7;
+  margin-top: 10px;
+}
+
+/* Button */
+.btn {
+  background: #a855f7;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin-top: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #7c3aed;
+  transform: scale(1.05);
+}
+
+/* Background Video */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Content Section */
+.video-section {
+  padding: 50px 20px;
+}
+
+.video-section h2 {
+  margin-bottom: 20px;
+  color: #a855f7;
+}
+
+/* Work Section */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 80%;
+  margin: 30px auto 0;
+}
+
+.work-card {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.work-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.work-card:hover {
+  background: #2a2a2a;
+  transform: translateY(-5px);
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

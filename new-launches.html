@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New Launches • Nikelooks</title>
+  <style>
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body { 
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif; 
+      color: #fff; 
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    /* --- NAVBAR (matching main page) --- */
+    .site-nav { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      height: 64px; 
+      display: flex; 
+      align-items: center; 
+      z-index: 10; 
+      background: rgba(0,0,0,.35); 
+      backdrop-filter: blur(8px); 
+      border-bottom: 1px solid rgba(255,255,255,.08); 
+    }
+    .nav-inner { 
+      width: 100%; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 0 16px; 
+    }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .brand { color: #fff; text-decoration: none; font-weight: 700; letter-spacing: .3px; }
+    .brand .accent { color: #ba24ff; }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,.1); }
+
+    /* --- MOTION GRAPHICS SECTIONS --- */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 64px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    
+    .hero-content {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+    }
+    .hero-content.animate { opacity: 1; transform: translateY(0); }
+    
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      background: linear-gradient(45deg, #ba24ff, #ff6b35);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+
+    /* Product showcase sections */
+    .product-section {
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-card {
+      background: rgba(255,255,255,.05);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      max-width: 600px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.1);
+      opacity: 0;
+      transform: scale(0.8) rotateY(15deg);
+      transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .product-card.animate {
+      opacity: 1;
+      transform: scale(1) rotateY(0deg);
+    }
+    
+    .product-image {
+      width: 300px;
+      height: 300px;
+      background: linear-gradient(45deg, #ba24ff, #ff6b35);
+      border-radius: 50%;
+      margin: 0 auto 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      font-weight: 900;
+      opacity: 0.9;
+    }
+    
+    .product-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #ba24ff;
+    }
+    
+    .product-desc {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    /* Floating elements */
+    .floating-element {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #ba24ff, #ff6b35);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+    .floating-element:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
+    .floating-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 4s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Scroll-triggered animations */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s ease;
+    }
+    
+    .fade-in-up.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: all 0.8s ease;
+    }
+    
+    .slide-in-left.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    .slide-in-right {
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.8s ease;
+    }
+    
+    .slide-in-right.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Parallax sections */
+    .parallax-section {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .parallax-content {
+      text-align: center;
+      z-index: 2;
+    }
+    
+    .parallax-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ba24ff" opacity="0.1"/></svg>') repeat;
+      background-size: 50px 50px;
+      animation: parallax 20s linear infinite;
+    }
+    
+    @keyframes parallax {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100px); }
+    }
+
+    /* Final CTA section */
+    .cta-section {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ba24ff 0%, #ff6b35 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+    .cta-content {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 1s ease;
+    }
+    
+    .cta-content.animate {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .cta-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(255,255,255,.2);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,.3);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .cta-btn:hover {
+      background: rgba(255,255,255,.3);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="site-nav" role="navigation" aria-label="Main">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="back-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+      <a href="index.html" class="brand"><span class="accent">Nike</span>looks</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">New Launches</h1>
+      <p class="hero-subtitle">Discover the latest innovations in footwear</p>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE 1 -->
+  <section class="product-section">
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    
+    <div class="product-card">
+      <div class="product-image">👟</div>
+      <h2 class="product-title">Air Max Pro</h2>
+      <p class="product-desc">Revolutionary comfort meets cutting-edge design. Experience the future of athletic footwear with our latest innovation.</p>
+    </div>
+  </section>
+
+  <!-- PARALLAX SECTION -->
+  <section class="parallax-section">
+    <div class="parallax-bg"></div>
+    <div class="parallax-content fade-in-up">
+      <h2 style="font-size: 3rem; color: #ba24ff; margin-bottom: 1rem;">Innovation Meets Style</h2>
+      <p style="font-size: 1.3rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">
+        Every step forward is a step toward excellence. Our new collection pushes boundaries and redefines what's possible.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE 2 -->
+  <section class="product-section">
+    <div class="product-card slide-in-left">
+      <div class="product-image">🏃</div>
+      <h2 class="product-title">Speed Runner Elite</h2>
+      <p class="product-desc">Lightning-fast performance with unmatched durability. Built for champions who demand the best.</p>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE 3 -->
+  <section class="product-section">
+    <div class="product-card slide-in-right">
+      <div class="product-image">🎯</div>
+      <h2 class="product-title">Precision Trainer</h2>
+      <p class="product-desc">Perfect balance of support and flexibility. Engineered for athletes who strive for perfection.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to Experience?</h2>
+      <p style="font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9;">
+        Be among the first to own these revolutionary designs
+      </p>
+      <a href="#" class="cta-btn">Shop Now</a>
+    </div>
+  </section>
+
+  <script>
+    // Scroll-triggered animations
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .product-card');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('animate');
+        }
+      });
+    }
+
+    // Initial animations
+    window.addEventListener('load', () => {
+      // Hero animation
+      setTimeout(() => {
+        document.querySelector('.hero-content').classList.add('animate');
+      }, 500);
+      
+      // CTA animation
+      setTimeout(() => {
+        document.querySelector('.cta-content').classList.add('animate');
+      }, 1000);
+    });
+
+    // Scroll animations
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Initial check
+    animateOnScroll();
+  </script>
+</body>
+</html>
