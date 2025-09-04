@@ -1,4 +1,16 @@
 // Scroll animation reveal
+// Import Supabase
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+// Replace with your own values from Supabase
+const SUPABASE_URL = "https://my website.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvbGVldGxjcmluZXlqem1rbmZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2MjM1MjAsImV4cCI6MjA3MjE5OTUyMH0.Ew4yH9roXxLmYZp9oQOkxi2zICshpythHlvm5Of-gnE";
+
+export const supabase = createClient(
+  "https://zoleetlcrineyjzmknfp.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvbGVldGxjcmluZXlqem1rbmZwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2MjM1MjAsImV4cCI6MjA3MjE5OTUyMH0.Ew4yH9roXxLmYZp9oQOkxi2zICshpythHlvm5Of-gnE"
+);
+
 function revealOnScroll() {
   let reveals = document.querySelectorAll(".reveal");
 
